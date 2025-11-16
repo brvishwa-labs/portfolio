@@ -1,4 +1,6 @@
 import React from 'react';
+import profileImg from '../assets/images/profile.JPG';   // <-- MATCHED EXACT FILENAME
+import resumePDF from '../assets/resume.pdf';            // <-- FIXED
 
 const Hero = () => {
   const scrollToSection = (href) => {
@@ -9,10 +11,9 @@ const Hero = () => {
   };
 
   const downloadResume = () => {
-    // Create a link to the resume PDF
     const link = document.createElement('a');
-    link.href = '/assets/resume.pdf';
-    link.download = 'Vishwa_Resume.pdf';
+    link.href = resumePDF;                  // <-- FIXED
+    link.download = 'Vishwa_Resume.pdf';   // filename user gets
     link.click();
   };
 
@@ -27,26 +28,16 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center animate-fade-in-up">
+
           {/* Profile Image */}
           <div className="mb-8 flex justify-center">
             <div className="relative">
               <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-neon-blue to-neon-blue-dark p-1">
                 <img
-                  src={`${process.env.PUBLIC_URL}/assets/images/profile.jpg`}
+                  src={profileImg}                       // <-- FIXED
                   alt="B.R. Vishwa"
                   className="w-full h-full rounded-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    const fallback = e.target.parentElement.querySelector('.profile-fallback');
-                    if (fallback) {
-                      fallback.style.display = 'flex';
-                    }
-                  }}
-                  style={{ display: 'block' }}
                 />
-                <div className="profile-fallback w-full h-full rounded-full bg-gray-800 flex items-center justify-center" style={{ display: 'none' }}>
-                  <span className="text-4xl sm:text-5xl">👤</span>
-                </div>
               </div>
               <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-neon-blue rounded-full border-4 border-gray-900"></div>
             </div>
@@ -66,7 +57,7 @@ const Hero = () => {
 
           {/* Description */}
           <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-8 animate-fade-in-up">
-            Motivated and passionate Computer Science Engineering student with a strong foundation in web development and programming. 
+            Motivated and passionate Computer Science Engineering student with a strong foundation in web development and programming.
             Seeking to apply technical knowledge and problem-solving skills in challenging projects.
           </p>
 
@@ -107,6 +98,7 @@ const Hero = () => {
               </svg>
             </button>
           </div>
+
         </div>
       </div>
     </section>
@@ -114,4 +106,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
