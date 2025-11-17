@@ -6,7 +6,9 @@ const Contact = () => {
     email: '',
     message: '',
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // ⭐ NEW
 
   const handleChange = (e) => {
     setFormData({
@@ -15,15 +17,32 @@ const Contact = () => {
     });
   };
 
+  // ⭐ UPDATED HANDLE SUBMIT — Web3Forms Integration
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      alert('Thank you for your message! I will get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
-      setIsSubmitting(false);
-    }, 1000);
+    const formDataObj = new FormData();
+    formDataObj.append("access_key", "a78d91dc-32f4-4adf-a6d3-fbb05890d57e");
+    formDataObj.append("name", formData.name);
+    formDataObj.append("email", formData.email);
+    formDataObj.append("message", formData.message);
+
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formDataObj,
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+    } else {
+      setSubmitStatus("error");
+    }
+
+    setIsSubmitting(false);
   };
 
   const socialLinks = [
@@ -46,24 +65,18 @@ const Contact = () => {
       url: 'https://www.linkedin.com/in/vishwa-br-4b1162356/',
     },
 
-    /* ⭐ INSTAGRAM ADDED */
+    // ⭐ Instagram Added
     {
       name: 'Instagram',
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-        >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
           <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
           <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
         </svg>
       ),
       url: 'https://instagram.com/_b.r.vishwa_',
-    },
+    }
   ];
 
   return (
@@ -127,6 +140,19 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="animate-fade-in-up">
             <form onSubmit={handleSubmit} className="space-y-4">
+
+              {/* ⭐ SUCCESS + ERROR MESSAGES */}
+              {submitStatus === "success" && (
+                <p className="text-green-400 bg-green-900/20 p-3 rounded-lg border border-green-600">
+                  ✅ Message sent successfully! I will get back to you soon.
+                </p>
+              )}
+
+              {submitStatus === "error" && (
+                <p className="text-red-400 bg-red-900/20 p-3 rounded-lg border border-red-600">
+                  ❌ Something went wrong. Please try again later.
+                </p>
+              )}
 
               <div>
                 <label htmlFor="name" className="block text-gray-300 mb-2">Name</label>
