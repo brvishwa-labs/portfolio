@@ -24,15 +24,26 @@ const Achievements = () => {
       organization: 'DeScience Open Source Club',
       date: 'Present',
       icon: '👥',
-      description: 'Successfully organized multiple events and training sessions for the club members',
+      description: 'Successfully organized multiple events and training sessions for club members',
     },
+
+    /* ⭐ UPDATED – Git Workshop Achievement */
+    {
+      type: 'Leadership',
+      title: 'Hands-on Git Workshop Instructor',
+      organization: 'R & D Club',
+      date: '2024',
+      icon: '🧑‍🏫',
+      description: 'Conducted a hands-on Git & GitHub workshop, teaching students practical version control workflows and real-world collaboration techniques.',
+    },
+
     {
       type: 'Leadership',
       title: 'Event Host (Compère)',
       organization: 'Various Events',
       date: 'Present',
       icon: '🎤',
-      description: 'Compared and facilitated various events, ensuring audience engagement and smooth event execution',
+      description: 'Compared and facilitated events, ensuring engagement and smooth execution',
     },
     {
       type: 'Achievement',
@@ -56,7 +67,7 @@ const Achievements = () => {
       organization: 'GitHub',
       date: '2024',
       icon: '🦈',
-      description: 'Earned the Pull Shark achievement on GitHub for making impactful pull requests and contributions to open-source projects',
+      description: 'Earned the Pull Shark badge for impactful pull requests and open-source contributions',
     },
   ];
 
@@ -82,7 +93,7 @@ const Achievements = () => {
               key={index}
               className="card relative overflow-hidden group hover:scale-105 transition-all duration-300 animate-fade-in-up"
             >
-              {/* Gradient Border Effect */}
+              {/* Gradient Border */}
               <div
                 className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${getCategoryColor(
                   achievement.type
@@ -92,7 +103,7 @@ const Achievements = () => {
               {/* Icon */}
               <div className="text-5xl mb-4">{achievement.icon}</div>
 
-              {/* Type Badge */}
+              {/* Type */}
               <span
                 className={`inline-block px-3 py-1 text-xs font-semibold rounded-full mb-3 bg-gradient-to-r ${getCategoryColor(
                   achievement.type
@@ -102,11 +113,9 @@ const Achievements = () => {
               </span>
 
               {/* Title */}
-              <h3 className="text-xl font-bold text-white mb-2">
-                {achievement.title}
-              </h3>
+              <h3 className="text-xl font-bold text-white mb-2">{achievement.title}</h3>
 
-              {/* Issuer/Company/Organization */}
+              {/* Issuer / Organization / Event */}
               <p className="text-neon-blue font-semibold mb-2">
                 {achievement.issuer || achievement.company || achievement.organization || achievement.event}
               </p>
@@ -127,4 +136,3 @@ const Achievements = () => {
 };
 
 export default Achievements;
-

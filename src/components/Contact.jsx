@@ -18,8 +18,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
+
     setTimeout(() => {
       alert('Thank you for your message! I will get back to you soon.');
       setFormData({ name: '', email: '', message: '' });
@@ -46,14 +45,24 @@ const Contact = () => {
       ),
       url: 'https://www.linkedin.com/in/vishwa-br-4b1162356/',
     },
+
+    /* ⭐ INSTAGRAM ADDED */
     {
-      name: 'Email',
+      name: 'Instagram',
       icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
         </svg>
       ),
-      url: 'mailto:b.r.vishwa2005@gmail.com',
+      url: 'https://instagram.com/_b.r.vishwa_',
     },
   ];
 
@@ -63,19 +72,18 @@ const Contact = () => {
 
       <div className="max-w-4xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8">
+
           {/* Contact Info */}
           <div className="space-y-6 animate-fade-in-up">
             <div>
-              <h3 className="text-2xl font-bold text-neon-blue mb-4">
-                Let's Connect
-              </h3>
+              <h3 className="text-2xl font-bold text-neon-blue mb-4">Let's Connect</h3>
               <p className="text-gray-300 leading-relaxed mb-6">
-                I'm always open to discussing new projects, creative ideas, or
-                opportunities to be part of your visions. Feel free to reach out!
+                I'm always open to discussing new projects, creative ideas, or opportunities.  
+                Feel free to reach out!
               </p>
             </div>
 
-            {/* Email */}
+            {/* Email & Phone */}
             <div className="card">
               <div className="flex items-center space-x-4">
                 <div className="text-neon-blue">
@@ -85,16 +93,10 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">Email & Phone</p>
-                  <a
-                    href="mailto:b.r.vishwa2005@gmail.com"
-                    className="text-neon-blue hover:text-neon-blue-dark transition-colors block"
-                  >
+                  <a href="mailto:b.r.vishwa2005@gmail.com" className="text-neon-blue block">
                     b.r.vishwa2005@gmail.com
                   </a>
-                  <a
-                    href="tel:+919344793687"
-                    className="text-gray-300 hover:text-neon-blue transition-colors block mt-1"
-                  >
+                  <a href="tel:+919344793687" className="text-gray-300 hover:text-neon-blue block mt-1">
                     +91 93447 93687
                   </a>
                 </div>
@@ -105,43 +107,29 @@ const Contact = () => {
             <div>
               <p className="text-gray-300 mb-4 font-semibold">Follow me on:</p>
               <div className="flex space-x-4">
-                {socialLinks.map((social, index) => {
-                  if (social.name === 'Email') {
-                    return (
-                      <a
-                        key={index}
-                        href="mailto:b.r.vishwa2005@gmail.com"
-                        className="w-12 h-12 flex items-center justify-center rounded-lg bg-gray-800 text-gray-400 hover:text-neon-blue hover:bg-gray-700 border border-gray-700 hover:border-neon-blue transition-all duration-300 transform hover:scale-110 cursor-pointer"
-                        aria-label={social.name}
-                      >
-                        {social.icon}
-                      </a>
-                    );
-                  }
-                  return (
-                    <a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 flex items-center justify-center rounded-lg bg-gray-800 text-gray-400 hover:text-neon-blue hover:bg-gray-700 border border-gray-700 hover:border-neon-blue transition-all duration-300 transform hover:scale-110"
-                      aria-label={social.name}
-                    >
-                      {social.icon}
-                    </a>
-                  );
-                })}
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 flex items-center justify-center rounded-lg bg-gray-800 text-gray-400 hover:text-neon-blue hover:bg-gray-700 border border-gray-700 hover:border-neon-blue transition-all duration-300 transform hover:scale-110"
+                    aria-label={social.name}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
               </div>
             </div>
+
           </div>
 
           {/* Contact Form */}
           <div className="animate-fade-in-up">
             <form onSubmit={handleSubmit} className="space-y-4">
+
               <div>
-                <label htmlFor="name" className="block text-gray-300 mb-2">
-                  Name
-                </label>
+                <label htmlFor="name" className="block text-gray-300 mb-2">Name</label>
                 <input
                   type="text"
                   id="name"
@@ -149,15 +137,13 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-neon-blue focus:ring-1 focus:ring-neon-blue text-gray-100 transition-all"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-neon-blue focus:ring-neon-blue text-gray-100"
                   placeholder="Your Name"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-gray-300 mb-2">
-                  Email
-                </label>
+                <label htmlFor="email" className="block text-gray-300 mb-2">Email</label>
                 <input
                   type="email"
                   id="email"
@@ -165,15 +151,13 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-neon-blue focus:ring-1 focus:ring-neon-blue text-gray-100 transition-all"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-neon-blue focus:ring-neon-blue text-gray-100"
                   placeholder="your.email@example.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-gray-300 mb-2">
-                  Message
-                </label>
+                <label htmlFor="message" className="block text-gray-300 mb-2">Message</label>
                 <textarea
                   id="message"
                   name="message"
@@ -181,7 +165,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows="5"
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-neon-blue focus:ring-1 focus:ring-neon-blue text-gray-100 transition-all resize-none"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-neon-blue focus:ring-neon-blue text-gray-100 resize-none"
                   placeholder="Your message..."
                 ></textarea>
               </div>
@@ -193,8 +177,10 @@ const Contact = () => {
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
+
             </form>
           </div>
+
         </div>
       </div>
     </section>
@@ -202,4 +188,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
